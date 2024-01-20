@@ -40,6 +40,8 @@ import kotlin.math.sqrt
 
 class CheckRecordsActivity : AppCompatActivity() {
 
+    // testing github repo push pull see whether it works
+
     private lateinit var binding: ActivityCheckRecordsBinding
     private lateinit var cameraSelector: CameraSelector
     private lateinit var cameraProviderFuture: ListenableFuture<ProcessCameraProvider>
