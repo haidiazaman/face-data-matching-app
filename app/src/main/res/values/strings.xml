@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">faceRecognitionInputsApp</string>
+    <string name="open_camera">Open Camera</string>
+    <string name="capture_face_and_input_details">Capture Face and Input Details</string>
+    <string name="capture_face_and_input_medical_data">Capture face and input medical data</string>
+    <string name="start_camera">Start Camera</string>
+    <string name="enter_your_answer_for_question_2">Enter your answer for Question 2</string>
+    <string name="register_new_person">Register new person</string>
+    <string name="cross_check_existing_medical_records">Cross check existing medical records</string>
+    <string name="question_1">Question 1</string>
+    <string name="question_2">Question 2</string>
+    <string name="question_3">Question 3</string>
+    <string name="question_4">Question 4</string>
+    <string name="back_to_homepage">Back to homepage</string>
+</resources>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingStart="16dp"
+    android:paddingTop="16dp"
+    android:paddingEnd="16dp"
+    android:paddingBottom="16dp"
+    tools:context=".UserInputActivity">
+
+    <!-- Question 1 -->
+    <EditText
+        android:id="@+id/editTextQuestion1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Question 1"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Question 2 -->
+    <EditText
+        android:id="@+id/editTextQuestion2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Question 2"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Question 3 -->
+    <EditText
+        android:id="@+id/editTextQuestion3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Question 3"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Question 4 -->
+    <EditText
+        android:id="@+id/editTextQuestion4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Question 4"/>
+
+    <!-- Button to move to the next activity -->
+    <Button
+        android:id="@+id/completeRegistrationButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Register person"
+        android:layout_marginTop="16dp"/>
+
+
+
+<!--    &lt;!&ndash; sample &ndash;&gt;-->
+<!--    <EditText-->
+<!--        android:id="@+id/inputKey"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:hint="check answer"/>-->
+
+<!--    &lt;!&ndash; Button to move to the next activity &ndash;&gt;-->
+<!--    <Button-->
+<!--        android:id="@+id/checkAnswerButton"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="check answer"-->
+<!--        android:layout_marginTop="16dp"/>-->
+
+<!--    &lt;!&ndash; sample &ndash;&gt;-->
+<!--    <TextView-->
+<!--        android:id="@+id/showAnswer"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:hint="check answer"/>-->
+
+<!--    &lt;!&ndash; Button to move to the next activity &ndash;&gt;-->
+<!--    <Button-->
+<!--        android:id="@+id/backHomepageButton"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="back hompage"-->
+<!--        android:layout_marginTop="16dp"/>-->
+
+
+</LinearLayout>
