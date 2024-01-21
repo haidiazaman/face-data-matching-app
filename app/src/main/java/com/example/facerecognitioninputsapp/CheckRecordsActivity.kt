@@ -384,11 +384,11 @@ class CheckRecordsActivity : AppCompatActivity() {
             Log.i("getMatchingKey", "null $matchingKey")
         }
 
-        Log.i("getMatchingKey", "current max similarity score: $maxSimilarityScore")
-        Log.i("getMatchingKey", "current matchedKey $matchingKey")
+        Log.i("getMatchingKey final", "current max similarity score: $maxSimilarityScore")
+        Log.i("getMatchingKey final", "current matchedKey $matchingKey")
 
         // Adjust threshold as needed
-        val threshold = 0.9
+        val threshold = 0.8
         return if (maxSimilarityScore > threshold) matchingKey else null
     }
 
