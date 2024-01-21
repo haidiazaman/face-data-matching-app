@@ -15,17 +15,18 @@ class MainActivity : AppCompatActivity() {
 
     private val requestPermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) {isGranted ->
         if (isGranted) {
-//            startScanner()
-            Log.i("temp", "put this line of code so that if statement not empty, need to see how to change this method of permission")
+            Log.i("requestPermissionLauncher", "Permission Granted!")
         }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        // connect the current activity to its layout xml file
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         getCurrentSharedPreferencesDict()
+        // uncomment these 2 lines of code to clear phone SharedPreferences for this app
 //        clearSharedPreferences()
 //        getCurrentSharedPreferencesDict()
 
@@ -47,21 +48,19 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getCurrentSharedPreferencesDict() {
-
         sharedPreferences =
             getSharedPreferences("face_recognition_app_user_data", Context.MODE_PRIVATE)
-
         val allKeyValuePairs: Map<String, *> = sharedPreferences.all
         val allKeys: Set<String> = allKeyValuePairs.keys
-
         for (key in allKeys) {
             val value = sharedPreferences.getString(key, null) // Assuming your values are strings, adjust accordingly
-
-            Log.i("SharedPreferences Key", key)
-            Log.i("SharedPreferences Value", value ?: "null")
+            Log.i("getCurrentSharedPreferencesDict start", "--- start ---")
+            Log.i("getCurrentSharedPreferencesDict Key", key)
+            Log.i("getCurrentSharedPreferencesDict Value", value ?: "null")
+            Log.i("getCurrentSharedPreferencesDict end", "--- end ---")
+            Log.i("getCurrentSharedPreferencesDict end", "")
         }
     }
-
 
     private fun requestCameraAndStartRegistration() {
         if (isPermissionGranted(cameraPermission)) {
@@ -74,9 +73,6 @@ class MainActivity : AppCompatActivity() {
     private fun requestCameraAndStartCheckRecords() {
         if (isPermissionGranted(cameraPermission)) {
             CheckRecordsActivity.startScanner(this) { }
-//            val intent = Intent(this, RetrieveDataActivity::class.java)
-//            startActivity(intent)
-//            finish()
         } else {
             requestCameraPermission()
         }

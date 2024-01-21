@@ -12,36 +12,64 @@
     android:paddingBottom="16dp"
     tools:context=".UserInputActivity">
 
-    <!-- Question 1 -->
+    <!-- Question -->
     <EditText
         android:id="@+id/editTextQuestion1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Question 1"
+        android:hint="Please input: Name"
         android:layout_marginBottom="16dp"/>
 
-    <!-- Question 2 -->
+    <!-- Question -->
     <EditText
         android:id="@+id/editTextQuestion2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Question 2"
+        android:hint="Please input: Date of Birth"
         android:layout_marginBottom="16dp"/>
 
-    <!-- Question 3 -->
+    <!-- Question -->
     <EditText
         android:id="@+id/editTextQuestion3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Question 3"
+        android:hint="Please input: Gender"
         android:layout_marginBottom="16dp"/>
 
-    <!-- Question 4 -->
+    <!-- Question -->
     <EditText
         android:id="@+id/editTextQuestion4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Question 4"/>
+        android:hint="Please input: Occupation"
+        android:layout_marginBottom="16dp"/>
+
+
+    <!-- Question -->
+    <EditText
+        android:id="@+id/editTextQuestion5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Please input: Any Allergies"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Question -->
+    <EditText
+        android:id="@+id/editTextQuestion6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Please input: Existing Medical Conditions"
+        android:layout_marginBottom="16dp"/>
+
+
+    <!-- Question -->
+    <EditText
+        android:id="@+id/editTextQuestion7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Please input: Insurance Provider"
+        android:layout_marginBottom="16dp"/>
+
 
     <!-- Button to move to the next activity -->
     <Button
@@ -50,38 +78,5 @@
         android:layout_height="wrap_content"
         android:text="Register person"
         android:layout_marginTop="16dp"/>
-
-
-
-<!--    &lt;!&ndash; sample &ndash;&gt;-->
-<!--    <EditText-->
-<!--        android:id="@+id/inputKey"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:hint="check answer"/>-->
-
-<!--    &lt;!&ndash; Button to move to the next activity &ndash;&gt;-->
-<!--    <Button-->
-<!--        android:id="@+id/checkAnswerButton"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="check answer"-->
-<!--        android:layout_marginTop="16dp"/>-->
-
-<!--    &lt;!&ndash; sample &ndash;&gt;-->
-<!--    <TextView-->
-<!--        android:id="@+id/showAnswer"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:hint="check answer"/>-->
-
-<!--    &lt;!&ndash; Button to move to the next activity &ndash;&gt;-->
-<!--    <Button-->
-<!--        android:id="@+id/backHomepageButton"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="back hompage"-->
-<!--        android:layout_marginTop="16dp"/>-->
-
 
 </LinearLayout>

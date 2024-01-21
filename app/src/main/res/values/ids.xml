@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <item name="registerButton" type="id" />
+    <item name="answer5" type="id" />
+    <item name="answer6" type="id" />
+    <item name="answer7" type="id" />
 </resources>
