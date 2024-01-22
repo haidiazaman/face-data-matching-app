@@ -55,7 +55,7 @@ class CheckRecordsActivity : AppCompatActivity() {
     private lateinit var interpreter: Interpreter
     private val interpreterOptions = Interpreter.Options().apply { numThreads = 4 }
     private val inputSize = 160
-    private val embeddingDim = 128 // this is the output size
+    private val embeddingDim = 128// 192 //  // this is the output size
     private var faceRecognitionOutput =
         FloatArray(embeddingDim) // this is the actual output of the faceRecog model to be updated inPlace
     private lateinit var sharedPreferences: SharedPreferences
@@ -101,12 +101,15 @@ class CheckRecordsActivity : AppCompatActivity() {
         this.also { context = it }
         try {
             // place tflite model in main>assets>file_name.tflite, only need to put the file_name.tflite instead of absolute path
-            interpreter =
-                Interpreter(FileUtil.loadMappedFile(context, "facenet.tflite"), interpreterOptions)
-            // uncomment this line of code to double check your model's embedding dim
-//            val outputTensorShape = interpreter.getOutputTensor(0).shape()
-//            val checkEmbeddingDim = outputTensorShape[outputTensorShape.size - 1]
-//            Log.i("interpreter", "embedding dim: $checkEmbeddingDim")
+//            interpreter = Interpreter(FileUtil.loadMappedFile(context, "mobile_face_net.tflite"), interpreterOptions)
+            interpreter = Interpreter(FileUtil.loadMappedFile(context, "facenet.tflite"), interpreterOptions)
+            // uncomment this line of code to double check your model's input and embedding dim
+            val inputTensorShape = interpreter.getInputTensor(0).shape()
+            val checkInputDim = inputTensorShape[inputTensorShape.size - 1]
+            Log.i("interpreter dim input", "input dim: $checkInputDim")
+            val outputTensorShape = interpreter.getOutputTensor(0).shape()
+            val checkEmbeddingDim = outputTensorShape[outputTensorShape.size - 1]
+            Log.i("interpreter dim embedding", "embedding dim: $checkEmbeddingDim")
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -139,6 +142,7 @@ class CheckRecordsActivity : AppCompatActivity() {
             if (isFaceRecognitionEnabled) {
                 // if button clicked and face is detected, performFaceRecognition is called and then output saved and go to next activity
                 performFaceRecognition(detector, imageProxy)
+                isFaceRecognitionEnabled = false
             } else {
                 // continue video stream
                 processImageProxy(detector, imageProxy)
@@ -183,8 +187,7 @@ class CheckRecordsActivity : AppCompatActivity() {
     @SuppressLint("UnsafeOptInUsageError")
     private fun performFaceRecognition(detector: FaceDetector, imageProxy: ImageProxy) {
         // Process the current frame
-        val inputImage =
-            InputImage.fromMediaImage(imageProxy.image!!, imageProxy.imageInfo.rotationDegrees)
+        val inputImage = InputImage.fromMediaImage(imageProxy.image!!, imageProxy.imageInfo.rotationDegrees)
         detector.process(inputImage).addOnSuccessListener { faces ->
             if (faces.isNotEmpty()) {
                 isFaceDetected = true
@@ -206,10 +209,11 @@ class CheckRecordsActivity : AppCompatActivity() {
                     "performFaceRecognition faceRecog model output",
                     "faceRecog model output .contentToString(): ${faceRecognitionOutput.contentToString()}"
                 )
-
+                Log.i("check face recog running", "FINAL MATCHEDKEY FUNCTION CALLED")
                 // check for existing matched face in database, if none, return error prompt message
                 val matchedKey: String? = getMatchingKey(faceRecognitionOutput) // ? since output type might be null
                 Log.i("performFaceRecognition matchedKey", "$matchedKey")
+                Log.i("check face recog running", "FINAL MATCHEDKEY: $matchedKey")
 
                 if (matchedKey != null) {
                     // pass the current matchedKey to next activity - matchedKey is in type String
@@ -223,6 +227,7 @@ class CheckRecordsActivity : AppCompatActivity() {
                         val intent = Intent(this, RetrieveDataActivity::class.java).also {
                             it.putExtra("matchedKey", matchedKey)
                         }
+
 
                         // Start the new activity
                         startActivity(intent)
@@ -328,6 +333,10 @@ class CheckRecordsActivity : AppCompatActivity() {
 
     // run the facerecognition model
     private fun runFaceRecognitionModel(inputs: Any): FloatArray {
+        Log.i(
+            "runFaceRecognitionModel input",
+            "input.contentToString(): ${inputs}"
+        )
         val output = Array(1) { FloatArray(embeddingDim) }
         interpreter.run(inputs, output) // replaces the values in outputArray inplace
         Log.i(
@@ -343,8 +352,8 @@ class CheckRecordsActivity : AppCompatActivity() {
         val allKeyValuePairs: Map<String, *> = sharedPreferences.all
         val allKeys: Set<String> = allKeyValuePairs.keys
 
-        Log.i("getMatchingKey", "current face to check: $currentFaceRecognitionOutput")
-        Log.i("getMatchingKey", "current face to check toString(): ${currentFaceRecognitionOutput.contentToString()}")
+        Log.i("getMatchingKey current face", "current face to check: $currentFaceRecognitionOutput")
+        Log.i("getMatchingKey current face", "current face to check toString(): ${currentFaceRecognitionOutput.contentToString()}")
 
         //  initialise the maxSim and matchingKey
         var maxSimilarityScore = Float.MIN_VALUE
@@ -397,6 +406,9 @@ class CheckRecordsActivity : AppCompatActivity() {
         var dotProduct = 0.0f
         var normA = 0.0f
         var normB = 0.0f
+        Log.i("cosineSimilarity", "cosineSimilarity: ${x1.contentToString()}")
+        Log.i("cosineSimilarity", "cosineSimilarity: ${x2.contentToString()}")
+
         for (i in x1.indices) {
             dotProduct += x1[i] * x2[i]
             normA += x1[i].pow(2)
@@ -405,7 +417,7 @@ class CheckRecordsActivity : AppCompatActivity() {
         normA = sqrt(normA)
         normB = sqrt(normB)
         val similarityScore = dotProduct / (normA * normB)
-        Log.i("cosineSimilarity", "--- NEW ENTRY --")
+        Log.i("", "--- NEW ENTRY --")
         Log.i("cosineSimilarity", "dotProduct: $dotProduct")
         Log.i("cosineSimilarity", "normA: $normA")
         Log.i("cosineSimilarity", "normB: $normB")
