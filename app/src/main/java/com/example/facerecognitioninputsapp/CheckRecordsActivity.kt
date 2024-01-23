@@ -54,8 +54,8 @@ class CheckRecordsActivity : AppCompatActivity() {
         false // set to true to enable the faceRecognition model to do inference
     private lateinit var interpreter: Interpreter
     private val interpreterOptions = Interpreter.Options().apply { numThreads = 4 }
-    private val inputSize = 160
-    private val embeddingDim = 128// 192 //  // this is the output size
+    private val inputSize = 112 // 160
+    private val embeddingDim = 192 // 512 //  // 128 //  // this is the output size
     private var faceRecognitionOutput =
         FloatArray(embeddingDim) // this is the actual output of the faceRecog model to be updated inPlace
     private lateinit var sharedPreferences: SharedPreferences
@@ -101,8 +101,9 @@ class CheckRecordsActivity : AppCompatActivity() {
         this.also { context = it }
         try {
             // place tflite model in main>assets>file_name.tflite, only need to put the file_name.tflite instead of absolute path
-//            interpreter = Interpreter(FileUtil.loadMappedFile(context, "mobile_face_net.tflite"), interpreterOptions)
-            interpreter = Interpreter(FileUtil.loadMappedFile(context, "facenet.tflite"), interpreterOptions)
+//            interpreter = Interpreter(FileUtil.loadMappedFile(context, "model.tflite"), interpreterOptions)
+            interpreter = Interpreter(FileUtil.loadMappedFile(context, "mobile_face_net.tflite"), interpreterOptions)
+//            interpreter = Interpreter(FileUtil.loadMappedFile(context, "facenet.tflite"), interpreterOptions)
             // uncomment this line of code to double check your model's input and embedding dim
             val inputTensorShape = interpreter.getInputTensor(0).shape()
             val checkInputDim = inputTensorShape[inputTensorShape.size - 1]
@@ -169,6 +170,7 @@ class CheckRecordsActivity : AppCompatActivity() {
                 faces.forEach { face ->
                     val faceBox = FaceBox(binding.faceBoxOverlay, face, imageProxy.image!!.cropRect)
                     binding.faceBoxOverlay.add(faceBox)
+                    Log.i("face bbox", "${face.boundingBox}")
                 }
             } else {
                 isFaceDetected = false
@@ -204,6 +206,7 @@ class CheckRecordsActivity : AppCompatActivity() {
                 val inputBuffer =
                     convertBitmapToByteBuffer(croppedFaceBitmap)
                 // Run inference
+                Log.i("inputBuffer", "$inputBuffer")
                 faceRecognitionOutput = runFaceRecognitionModel(inputBuffer)
                 Log.i(
                     "performFaceRecognition faceRecog model output",
@@ -397,7 +400,7 @@ class CheckRecordsActivity : AppCompatActivity() {
         Log.i("getMatchingKey final", "current matchedKey $matchingKey")
 
         // Adjust threshold as needed
-        val threshold = 0.8
+        val threshold = 0.98
         return if (maxSimilarityScore > threshold) matchingKey else null
     }
 

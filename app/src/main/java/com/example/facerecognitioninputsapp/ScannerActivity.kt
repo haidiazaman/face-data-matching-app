@@ -49,8 +49,8 @@ class ScannerActivity : AppCompatActivity() {
         false // set to true to enable the faceRecognition model to do inference
     private lateinit var interpreter: Interpreter
     private val interpreterOptions = Interpreter.Options().apply { numThreads = 4 }
-    private val inputSize = 160
-    private val embeddingDim = 128 // this is the output size
+    private val inputSize = 112 // 160
+    private val embeddingDim = 192// 512 //  // 128 // this is the output size
     private var faceRecognitionOutput =
         FloatArray(embeddingDim) // this is the actual output of the faceRecog model to be updated inPlace
 
@@ -90,12 +90,13 @@ class ScannerActivity : AppCompatActivity() {
         this.also { context = it }
         try {
             // place tflite model in main>assets>file_name.tflite, only need to put the file_name.tflite instead of absolute path
-            interpreter =
-                Interpreter(FileUtil.loadMappedFile(context, "facenet.tflite"), interpreterOptions)
+//            interpreter = Interpreter(FileUtil.loadMappedFile(context, "model.tflite"), interpreterOptions)
+            interpreter = Interpreter(FileUtil.loadMappedFile(context, "mobile_face_net.tflite"), interpreterOptions)
+//            interpreter = Interpreter(FileUtil.loadMappedFile(context, "facenet.tflite"), interpreterOptions)
             // uncomment this line of code to double check your model's embedding dim
-//            val outputTensorShape = interpreter.getOutputTensor(0).shape()
-//            val checkEmbeddingDim = outputTensorShape[outputTensorShape.size - 1]
-//            Log.i("interpreter", "embedding dim: $checkEmbeddingDim")
+            val outputTensorShape = interpreter.getOutputTensor(0).shape()
+            val checkEmbeddingDim = outputTensorShape[outputTensorShape.size - 1]
+            Log.i("interpreter dim embedding", "embedding dim: $checkEmbeddingDim")
         } catch (e: Exception) {
             e.printStackTrace()
         }
