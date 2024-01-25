@@ -16,4 +16,4 @@ This is a high level summary of the app workflow. From the homepage, you first s
 ![alt text](https://github.com/haidiazaman/face-data-matching-app/blob/main/imgs/photo_1_2024-01-26_00-04-53.jpg)
 
 For the next step, in the homepage you click "Cross check medical records" to find a face match with an existing face match in the database (app uses SharedPreferences). If there is a face match, you will be advanced to the next page where your medical data will be displayed. Else, you will be prompted "No Face Match" if the app can't find a match with any existing face in the database or "No Face detected" if there is no face in camera view.
-![alt text](https://github.com/haidiazaman/face-data-matching-app/blob/main/imgs/photo_1_2024-01-26_00-04-53.jpg)
+![alt text](https://github.com/haidiazaman/face-data-matching-app/blob/main/imgs/photo_2_2024-01-26_00-04-53.jpg)
