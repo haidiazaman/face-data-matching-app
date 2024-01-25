@@ -42,14 +42,6 @@ class RetrieveDataActivity : AppCompatActivity() {
         val question6: String = userData?.question6 ?: "nil"
         val question7: String = userData?.question7 ?: "nil"
 
-        // set the current fields to these
-//        binding.answer1.text = binding.answer1.text.toString() + question1
-//        binding.answer2.text = binding.answer2.text.toString() + question2
-//        binding.answer3.text = binding.answer3.text.toString() + question3
-//        binding.answer4.text = binding.answer4.text.toString() + question4
-//        binding.answer5.text = binding.answer5.text.toString() + question5
-//        binding.answer6.text = binding.answer6.text.toString() + question6
-//        binding.answer7.text = binding.answer7.text.toString() + question7
         // set the current fields with HTML formatting
         binding.answer1.text = Html.fromHtml("<b>Name:</b> <u>$question1<u>")
         binding.answer2.text = Html.fromHtml("<b>Date of Birth:</b> <u>$question2<u>")
