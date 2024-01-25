@@ -14,4 +14,4 @@ The face recognition process utilizes a face matching model, comparing two faces
 
 Feel free to customize the threshold value to suit your preferences and application requirements.
 
-![alt text](https://github.com/haidiazaman/face-data-matching-app/blob/main/imgs/face%20matched.png)
+![alt text](https://github.com/haidiazaman/face-data-matching-app/blob/main/imgs/photo_1_2024-01-26_00-04-53.jpg)
