@@ -13,3 +13,5 @@ Face Recognition Process:
 The face recognition process utilizes a face matching model, comparing two faces based on their output vectors. The degree of similarity between these vectors is evaluated against a user-defined threshold. If the similarity surpasses the threshold, the app considers the faces matched, triggering the display of associated medical data.
 
 Feel free to customize the threshold value to suit your preferences and application requirements.
+
+![alt text](https://github.com/haidiazaman/face-data-matching-app/blob/main/imgs/face%20matched.png)
